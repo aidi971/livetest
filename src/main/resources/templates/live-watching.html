@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css" />
+    <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <title>观看直播</title>
+</head>
+
+<body>
+<!--导航栏-->
+<div th:replace="header::header"></div>
+<!--导航栏-->
+
+<!--播放器-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+
+        <div class="prism-player" id="player-con"></div>
+        <div class="col-2" id="talks" style="padding: 0;">
+            <iframe border="0" frameborder="no" id="mainFrame" onload="resizeIframe(this)"
+                    src="/chat/liveId" style="height: 550px;" th:src="@{/chat/}+${liveId}">
+
+            </iframe>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <a class="btn btn-success" href="#" th:href="@{/live/material/}+${liveMaterial.id}"
+           th:if="${liveMaterial}">下载直播资料</a>
+    </div>
+</div>
+<!--</div>-->
+<!--播放器-->
+<script src='/js/video.min.js' th:src="@{/js/video.min.js}"></script>
+<script src='/js/videojs-ie8.min.js' th:src="@{/js/videojs-ie8.min.js}"></script>
+<!--<script src='https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js'></script>-->
+<!--<script src= '/js/videojs-contrib-hls.min.js' th:src="@{/js/videojs-contrib-hls.min.js}"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>-->
+
+<script th:inline="javascript">
+
+    var url = [[${liveSource}]];
+    console.log(url);
+    var player = new Aliplayer({
+            "id": "player-con",
+            "source":url,
+            "width": "50%",
+            "height": "550px",
+            "autoplay": true,
+            "isLive": false,
+            "rePlay": false,
+            "playsinline": true,
+            "preload": true,
+            "controlBarVisibility": "hover",
+            "useH5Prism": true
+        }, function (player) {
+            console.log("The player is created");
+        }
+    );
+</script>
+
+</body>
+
+</html>

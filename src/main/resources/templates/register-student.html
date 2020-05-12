@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="css/loginStyle.css" rel="stylesheet" th:href="@{/css/loginStyle.css}"/>
+    <title>学生注册</title>
+    <style>
+        body {
+            background-image: linear-gradient(to left, rgb(119, 129, 250), rgb(70, 177, 234));
+            margin-top: 150px !important;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset=md-1">
+            <div class="row">
+                <div class="col-md-5 register-left">
+                    <h2>eddielive</h2>
+                    <p>已有账号？</p>
+                    <a href="login.html" th:href="@{/login}">
+                        <button class="btn btn-dark btn-secondary"
+                                type="button">返回登录
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-7 register-right">
+                    <h4>学生注册</h4>
+                    <h4 style="color: red; text-align: center" th:text="${message}"></h4>
+                    <form class="register-form" method="post" th:action="@{/register/student}">
+                        <div class="form-group">
+                            <input class="form-control" name="id" placeholder="学号" required type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="nickname" placeholder="昵称" required type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="email" placeholder="电子邮箱" required type="email"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="password" placeholder="密码" required type="password"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="grade" placeholder="年级：2016" required type="grade"/>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="majorId" required>
+                                <option th:each="major:${majorList}" th:text="${major.name}"
+                                        th:value="${major.id}"
+                                        value="1">软件工程
+                                </option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">注册</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

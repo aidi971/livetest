@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>首页</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="css/video.css" rel="stylesheet" th:href="@{/css/video.css}">
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="header::header"></div>
+<!--导航栏-->
+
+<!--轮播图-->
+<div class="container banner">
+    <div class="carousel slide" data-interval="2500" data-ride="carousel" id="carousel-banner">
+        <ol class="carousel-indicators">
+            <li class="" data-slide-to="0" data-target="#carousel-banner"
+                th:data-slide-to="${iterStatus.index}"
+                th:each="carousel, iterStatus:${carouselList}"></li>
+        </ol>
+        <div class="carousel-inner">
+            <a class="carousel-item" href="#"
+               th:class="${iterStatus.index}==0?'carousel-item active':'carousel-item'"
+               th:each="carousel, iterStatus:${carouselList}"
+               th:href="@{/video/}+${carousel.videoId}">
+                <img alt="" class="d-block w-100" src="img/bg1.jpg" th:src="@{/img/}+${carousel.imageName}">
+            </a>
+        </div>
+        <a class="carousel-control-prev" data-slide="prev" href="#carousel-banner">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" data-slide="next" href="#carousel-banner">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+<script charset="UTF-8" src="js/jquery-3.4.0.min.js" th:href="@{/js/jquery-3.4.0.min.js}"></script>
+<script charset="UTF-8" src="js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+<!--轮播图-->
+
+
+
+<div class="container teachers">
+    <div class="tetimonials">
+        <div class="inner">
+            <h4 class="subtitle">公告</h4>
+            <div class="border"></div>
+            <div class="rowT">
+                <div class="colT">
+                    <div class="testimonial">
+                        <img alt="" src="/img/t1.jpg">
+                        <div class="name">中段考</div>
+                        <p>中段考于5月6号进行</p>
+                    </div>
+                </div>
+                <div class="colT">
+                    <div class="testimonial">
+                        <img alt="" src="/img/t2.jpg">
+                        <div class="name">期末考</div>
+                        <p>期末考于6月20号开始</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

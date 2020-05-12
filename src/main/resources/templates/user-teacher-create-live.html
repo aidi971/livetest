@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>创建直播</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="css/video.css" rel="stylesheet" th:href="@{/css/video.css}">
+    <link href="css/zhibo.css" rel="stylesheet" th:href="@{/css/zhibo.css}">
+    <link href="css/user-left.css" rel="stylesheet" th:href="@{/css/user-left.css}">
+    <link href="css/user-right.css" rel="stylesheet" th:href="@{/css/user-right.css}">
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="header::header"></div>
+<!--导航栏-->
+<div class="container userPage">
+    <div class="row">
+        <div class="col-3" id="left-info">
+            <div th:replace="user-teacher-sidebar::sidebar">
+            </div>
+        </div>
+        <div class="col-9" id="right-info">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="message-content">
+                    <div class="container" id="chang-userInfo">
+                        <center>
+                            <form action="" enctype="multipart/form-data" method="post" th:action="@{/live}">
+                                <ul>
+                                    <li>
+                                        <span>直播名称：</span>
+                                        <input name="name" placeholder="如：Java 面向对象" required type="text">
+                                    </li>
+                                    <li>
+                                        <span>所属课程：</span>
+                                        <select name="courseId" required>
+                                            <option th:each="course:${courseList}" th:text="${course.name}"
+                                                    th:value="${course.id}"
+                                                    value="1">Java
+                                            </option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <span>面向年级：</span>
+                                        <input name="grade" placeholder="如：2016" required type="text">
+                                    </li>
+                                    <li>
+                                        <span>面向专业：</span>
+                                        <select name="majorId" required>
+                                            <option th:each="major:${majorList}" th:text="${major.name}"
+                                                    th:value="${major.id}"
+                                                    value="1">软件工程
+                                            </option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <span>直播日期：</span>
+                                        <input name="date" required type="date">
+                                    </li>
+                                    <li>
+                                        <span>开始时间：</span>
+                                        <input name="startTime" placeholder="如：18:00" required type="text">
+                                    </li>
+                                    <li>
+                                        <span>直播长度：</span>
+                                        <input name="length" placeholder="如：60 分钟" required type="text">
+                                    </li>
+                                    <li>
+                                        <span>直播资料：</span>
+                                        <input multiple name="liveMaterial" type="file">
+                                    </li>
+                                    <li>
+                                        <input class="btn-dark" id="saveBtn" type="submit" value="创建">
+                                    </li>
+                                </ul>
+                            </form>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
